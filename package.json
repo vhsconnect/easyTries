@@ -1,0 +1,16 @@
+{
+  "name": "easytries",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Tries.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^8.2.1",
+    "prettier": "^2.1.2"
+  }
+}
