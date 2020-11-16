@@ -18,17 +18,17 @@ describe("Tries.js", () => {
                         children: {
                           O: {
                             children: {},
-                            word: true
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+                            word: true,
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       };
       assert.deepEqual(trie, postSet);
     });
@@ -49,55 +49,55 @@ describe("Tries.js", () => {
                         children: {
                           O: {
                             children: {},
-                            word: true
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+                            word: true,
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       };
       assert.deepEqual(trie, postSet);
     });
-    it("Should work with number types", () => {
+    it("Should work with numbers", () => {
       let trie = new Trie();
       trie.set(3);
       let postSet = {
         children: {
           3: {
             children: {},
-            word: true
-          }
-        }
+            word: true,
+          },
+        },
       };
       assert.deepEqual(trie, postSet);
     });
-    // it("Should work with white spaces", () => {
-    //   let trie = new Trie();
-    //   trie.set("h o");
-    //   let postSet = {
-    //     children: {
-    //       H: {
-    //         children: {
-    //           " ": {
-    //             children: {
-    //               O: {
-    //                 children: {},
-    //                 word: true,
-    //               },
-    //             },
-    //           },
-    //         },
-    //       },
-    //     },
-    //   };
-    //   assert.deepEqual(trie, postSet);
-    // });
-    it("Should handle adding many nodes", done => {
+    it("Should work with white spaces", () => {
+      let trie = new Trie();
+      trie.set("h o");
+      let postSet = {
+        children: {
+          H: {
+            children: {
+              " ": {
+                children: {
+                  O: {
+                    children: {},
+                    word: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      };
+      assert.deepEqual(trie, postSet);
+    });
+    it("Should handle adding many nodes", (done) => {
       assert.doesNotThrow(() => {
         let trie = new Trie();
         for (let i = 0; i < 1000001; i++) trie.set(i);
@@ -124,11 +124,10 @@ describe("Tries.js", () => {
       assert(trie.get("   ne"), ["never"]);
       assert(trie.get("  hello "), ["hello"]);
     });
-    // it("Should  return words that share a root", () => {
-    //   let trie = new Trie();
-    //   trie.set("hello");
-    //   trie.set("HE");
-    //   assert(trie.get("he"), ["hello", "he"]);
-    // });
+    it("Should process special charachters", () => {
+      let trie = new Trie();
+      trie.set("#$^!@#$234><?}{][]]]][[]]}1");
+      assert(trie.get("#$^!"), ["#$^!@#$234><?}{][]]]][[]]}1"]);
+    });
   });
 });

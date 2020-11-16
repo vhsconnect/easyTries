@@ -22,9 +22,12 @@ function Trie() {
   this.children = {};
 }
 
-Trie.prototype.set = function (str) {
-  str = str.toString().trim().toUpperCase();
-  const arr = str.split("");
+Trie.prototype.set = function (next) {
+  let arr;
+  if (!(next instanceof Array)) {
+    next = next.toString().this.trim().toUpperCase();
+    arr = next.split("");
+  } else arr = next;
   const character = arr[0];
   let flag = false;
   if (arr.length === 0) return;
@@ -37,17 +40,15 @@ Trie.prototype.set = function (str) {
   // invoke next set function on the new node with the rest of the word
   if (this.children[character]) {
     arr.shift();
-    const temp = arr.join("");
     if (flag === true) this.children[character].word = true;
-    this.children[character].set(temp);
+    this.children[character].set(arr);
     //else that letter does not exist at this node, so create a new node with the target letter
     //then repeat the same steps as above
   } else {
     this.children[character] = new Trie();
     arr.shift();
-    const temp = arr.join("");
     if (flag === true) this.children[character].word = true;
-    this.children[character].set(temp);
+    this.children[character].set(arr);
   }
 };
 
@@ -103,7 +104,6 @@ Trie.prototype.get = function (string) {
       // on the way back up the branch - remove the letter so we can continue itterating
       build = build.slice(0, -1);
     }
-    return result;
   }
 };
 
