@@ -18,9 +18,9 @@
 - A Trie must have a children property (even if empty) but not necessarily a word property
  */
 
-function Trie() {
+module.exports = function Trie(): void {
   this.children = {};
-}
+};
 
 Trie.prototype.set = function (next) {
   let arr;
@@ -109,4 +109,4 @@ Trie.prototype.get = function (string) {
   }
 };
 
-module.exports = Trie;
+// module.exports = Trie;
