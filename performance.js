@@ -3,7 +3,7 @@
  * entire dictionary and checking memory and speed to load.
 \*=========================================================*/
 
-var easyTries = require("./src/Tries.js");
+var easyTries = require("./src");
 var dict = require("./dictionary_compact.json");
 
 var memStart = process.memoryUsage().heapTotal / 1048576;
@@ -22,12 +22,10 @@ console.log(
   " items loaded into TrieSearch in ",
   new Date() - timerStartSetDict
 );
-
 console.log("Dictionary loaded into TrieSearch.");
 let timerStart = new Date();
 console.log("Sample of 'sta'", trie.get("sta"));
 console.log("retrieve time: ", new Date() - timerStart);
-console.log("Trie Node Count: ", trie.size);
 
 var memEnd = process.memoryUsage().heapTotal / 1048576;
 console.log("Trie Memory Used: " + (memEnd - memStart) + " MB");

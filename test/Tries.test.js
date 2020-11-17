@@ -1,4 +1,4 @@
-const Trie = require("../src/Tries.js");
+const Trie = require("../src");
 const assert = require("assert");
 
 describe("Tries.js", () => {
@@ -8,15 +8,15 @@ describe("Tries.js", () => {
       trie.set("hello");
       let postSet = {
         children: {
-          H: {
+          h: {
             children: {
-              E: {
+              e: {
                 children: {
-                  L: {
+                  l: {
                     children: {
-                      L: {
+                      l: {
                         children: {
-                          O: {
+                          o: {
                             children: {},
                             word: true,
                           },
@@ -38,16 +38,16 @@ describe("Tries.js", () => {
       trie.set("he");
       let postSet = {
         children: {
-          H: {
+          h: {
             children: {
-              E: {
+              e: {
                 word: true,
                 children: {
-                  L: {
+                  l: {
                     children: {
-                      L: {
+                      l: {
                         children: {
-                          O: {
+                          o: {
                             children: {},
                             word: true,
                           },
@@ -81,11 +81,11 @@ describe("Tries.js", () => {
       trie.set("h o");
       let postSet = {
         children: {
-          H: {
+          h: {
             children: {
               " ": {
                 children: {
-                  O: {
+                  o: {
                     children: {},
                     word: true,
                   },
@@ -103,18 +103,18 @@ describe("Tries.js", () => {
         for (let i = 0; i < 1000001; i++) trie.set(i);
         done();
       });
-    }).timeout("3000");
+    });
   });
   describe(".get", () => {
-    it("Should should return result in an array", () => {
+    it("Should return result in an array", () => {
       let trie = new Trie();
       trie.set("hello");
       assert(trie.get("hello"), ["hello"]);
     });
-    it("Should  return words that share a root", () => {
+    it("Should return words that share a root", () => {
       let trie = new Trie();
       trie.set("hello");
-      trie.set("HE");
+      trie.set("he");
       assert(trie.get("he"), ["hello", "he"]);
     });
     it("Should ignore whitespaces, before and after word", () => {
@@ -128,6 +128,33 @@ describe("Tries.js", () => {
       let trie = new Trie();
       trie.set("#$^!@#$234><?}{][]]]][[]]}1");
       assert(trie.get("#$^!"), ["#$^!@#$234><?}{][]]]][[]]}1"]);
+    });
+  });
+  describe("withOptions", () => {
+    it("Should work with uppercase option", () => {
+      let trie = new Trie({ case: "upper" });
+      trie.set("hello");
+      assert(trie.get("hello"), ["HELLO"]);
+      assert(trie.get("HELLO"), ["HELLO"]);
+    });
+    it("Should work with lowercase option", () => {
+      let trie = new Trie({ case: "lower" });
+      trie.set("hello");
+      trie.set("HE");
+      assert(trie.get("hE"), ["hello", "he"]);
+    });
+    it("Should work with trim = false", () => {
+      let trie = new Trie({ trim: "flse" });
+      trie.set("hello  ");
+      trie.set("  never  ");
+      assert(trie.get("  hello "), []);
+      assert(trie.get("hello  "), ["hello  "]);
+    });
+    it("Should work not return results if input does not meet min depth", () => {
+      let trie = new Trie({ getDepth: 5 });
+      trie.set("he");
+      trie.set("hello there");
+      assert(trie.get("he"), []);
     });
   });
 });

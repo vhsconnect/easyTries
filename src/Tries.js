@@ -25,7 +25,7 @@ function Trie() {
 Trie.prototype.set = function (next) {
   let arr;
   if (!(next instanceof Array)) {
-    next = next.toString().this.trim().toUpperCase();
+    next = this.processWithOptions(next.toString());
     arr = next.split("");
   } else arr = next;
   const character = arr[0];
@@ -53,7 +53,8 @@ Trie.prototype.set = function (next) {
 };
 
 Trie.prototype.get = function (string) {
-  string = string.toString().trim().toUpperCase();
+  if (!this.minDepthMet) return [];
+  string = this.processWithOptions(string.toString());
   let pointer = this.children;
   const result = [];
   let traverseBuild = "";
@@ -104,6 +105,7 @@ Trie.prototype.get = function (string) {
       // on the way back up the branch - remove the letter so we can continue itterating
       build = build.slice(0, -1);
     }
+    return result;
   }
 };
 
