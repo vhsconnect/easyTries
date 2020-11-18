@@ -1,10 +1,10 @@
-const Trie = require("../src");
+const easyTries = require("../built").easyTries;
 const assert = require("assert");
 
 describe("Tries.js", () => {
   describe(".set", () => {
     it("Should set a word in the trie", () => {
-      let trie = new Trie();
+      let trie = easyTries();
       trie.set("hello");
       let postSet = {
         children: {
@@ -33,7 +33,7 @@ describe("Tries.js", () => {
       assert.deepEqual(trie, postSet);
     });
     it("Should set two words with a commom root", () => {
-      let trie = new Trie();
+      let trie = easyTries();
       trie.set("hello");
       trie.set("he");
       let postSet = {
@@ -64,7 +64,7 @@ describe("Tries.js", () => {
       assert.deepEqual(trie, postSet);
     });
     it("Should work with numbers", () => {
-      let trie = new Trie();
+      let trie = easyTries();
       trie.set(3);
       let postSet = {
         children: {
@@ -77,7 +77,7 @@ describe("Tries.js", () => {
       assert.deepEqual(trie, postSet);
     });
     it("Should work with white spaces", () => {
-      let trie = new Trie();
+      let trie = easyTries();
       trie.set("h o");
       let postSet = {
         children: {
@@ -99,7 +99,7 @@ describe("Tries.js", () => {
     });
     it("Should handle adding many nodes", (done) => {
       assert.doesNotThrow(() => {
-        let trie = new Trie();
+        let trie = easyTries();
         for (let i = 0; i < 1000001; i++) trie.set(i);
         done();
       });
@@ -107,51 +107,57 @@ describe("Tries.js", () => {
   });
   describe(".get", () => {
     it("Should return result in an array", () => {
-      let trie = new Trie();
+      let trie = easyTries();
       trie.set("hello");
       assert(trie.get("hello"), ["hello"]);
     });
     it("Should return words that share a root", () => {
-      let trie = new Trie();
+      let trie = easyTries();
       trie.set("hello");
       trie.set("he");
       assert(trie.get("he"), ["hello", "he"]);
     });
     it("Should ignore whitespaces, before and after word", () => {
-      let trie = new Trie();
+      let trie = easyTries();
       trie.set("hello  ");
       trie.set("  never  ");
       assert(trie.get("   ne"), ["never"]);
       assert(trie.get("  hello "), ["hello"]);
     });
     it("Should process special charachters", () => {
-      let trie = new Trie();
+      let trie = easyTries();
       trie.set("#$^!@#$234><?}{][]]]][[]]}1");
       assert(trie.get("#$^!"), ["#$^!@#$234><?}{][]]]][[]]}1"]);
     });
   });
   describe("withOptions", () => {
     it("Should work with uppercase option", () => {
-      let trie = new Trie({ case: "upper" });
+      let trie = easyTries({ casing: "upper" });
       trie.set("hello");
       assert(trie.get("hello"), ["HELLO"]);
       assert(trie.get("HELLO"), ["HELLO"]);
     });
     it("Should work with lowercase option", () => {
-      let trie = new Trie({ case: "lower" });
+      let trie = easyTries({ casing: "lower" });
       trie.set("hello");
       trie.set("HE");
       assert(trie.get("hE"), ["hello", "he"]);
     });
     it("Should work with trim = false", () => {
-      let trie = new Trie({ trim: "flse" });
+      let trie = easyTries({ trim: false });
       trie.set("hello  ");
       trie.set("  never  ");
       assert(trie.get("  hello "), []);
       assert(trie.get("hello  "), ["hello  "]);
     });
+    it("Should not alter other default options when an option is set", () => {
+      let trie = easyTries({ casing: "lower" });
+      trie.set("hello  ");
+      trie.set("  never  ");
+      assert(trie.get("  hello "), ["hello"]);
+    });
     it("Should work not return results if input does not meet min depth", () => {
-      let trie = new Trie({ getDepth: 5 });
+      let trie = easyTries({ getDepth: 5 });
       trie.set("he");
       trie.set("hello there");
       assert(trie.get("he"), []);

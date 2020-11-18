@@ -2,13 +2,15 @@
   "compilerOptions": {
     "outDir": "./built",
     "module": "commonjs",
-    "allowJs": false,
     "target": "es5",
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
     "moduleResolution": "node",
+    "noImplicitAny": true,
+    "allowJs": false,
+    "suppressImplicitAnyIndexErrors": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "declarationMap": true
   },
   "include": ["src/*"]
 }
