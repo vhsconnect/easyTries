@@ -18,11 +18,19 @@
 - A Trie must have a children property (even if empty) but not necessarily a word property
  */
 
-module.exports = function Trie(): void {
-  this.children = {};
-};
+declare class Trie {
+  constructor();
+  get: any;
+  set: any;
+  processWithOptions: (arg: string) => string;
+  minDepthMet: (arg: string) => boolean;
+}
 
-Trie.prototype.set = function (next) {
+function Trie(): void {
+  this.children = {};
+}
+
+Trie.prototype.set = function (next: any) {
   let arr;
   if (!(next instanceof Array)) {
     next = this.processWithOptions(next.toString());
@@ -52,16 +60,16 @@ Trie.prototype.set = function (next) {
   }
 };
 
-Trie.prototype.get = function (string) {
+Trie.prototype.get = function (string: any): [] | string[] {
   if (!this.minDepthMet) return [];
   string = this.processWithOptions(string.toString());
   let pointer = this.children;
-  const result = [];
+  const result = [string];
   let traverseBuild = "";
   return branches(traverse(string), string); // exe
 
   // traverse drills down to return the common root of all possible branches based on user input
-  function traverse(string) {
+  function traverse(string: string): Trie | boolean {
     const arr = string.split("");
     const character = arr[0];
 
@@ -86,7 +94,7 @@ Trie.prototype.get = function (string) {
   // at initiation build is the string we are finding branches for,
   // as we recurse and iterate, build is shapesifting as we build
   // all the possible word combination i.e branches
-  function branches(newRoot, build) {
+  function branches(newRoot: Trie | boolean, build: string): string[] | [] {
     if (newRoot === false) return [];
     // get all branch roots (letters)
     const keys = Object.keys(newRoot);
@@ -109,4 +117,4 @@ Trie.prototype.get = function (string) {
   }
 };
 
-// module.exports = Trie;
+export default Trie;

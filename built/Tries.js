@@ -1,3 +1,4 @@
+"use strict";
 /*
    example Trie Tree for the words 'CAT', 'CAN' & 'CATHY'
    |Trie 'C'
@@ -17,6 +18,7 @@
            |_ word
 - A Trie must have a children property (even if empty) but not necessarily a word property
  */
+Object.defineProperty(exports, "__esModule", { value: true });
 function Trie() {
     this.children = {};
 }
@@ -60,7 +62,7 @@ Trie.prototype.get = function (string) {
         return [];
     string = this.processWithOptions(string.toString());
     var pointer = this.children;
-    var result = [];
+    var result = [string];
     var traverseBuild = "";
     return branches(traverse(string), string); // exe
     // traverse drills down to return the common root of all possible branches based on user input
@@ -112,4 +114,4 @@ Trie.prototype.get = function (string) {
         return result;
     }
 };
-module.exports = Trie;
+exports.default = Trie;

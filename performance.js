@@ -3,8 +3,8 @@
  * entire dictionary and checking memory and speed to load.
 \*=========================================================*/
 
-var easyTries = require("./src");
-var dict = require("./dictionary_compact.json");
+let easyTries = require("./built/index.js").easyTries;
+let dict = require("./dictionary_compact.json");
 
 var memStart = process.memoryUsage().heapTotal / 1048576;
 console.log("Memory: " + memStart + " MB");

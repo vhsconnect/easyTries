@@ -1,23 +1,30 @@
-const Trie = require("./Tries.js");
+import Trie from "./Tries";
 
-module.exports = function easyTries(
-  options = {
+interface Options {
+  trim: boolean;
+  casing: string;
+  getDepth: number;
+}
+
+export function easyTries(
+  options: Options = {
     trim: true,
     casing: "sensitive",
-    getDepth: 1
+    getDepth: 1,
   }
 ) {
-  Trie.prototype.processWithOptions = string =>
+  Trie.prototype.processWithOptions = (string: string) =>
     [
-      options.trim ? x => x.trim() : x => x,
+      options.trim ? (x: string) => x.trim() : (x: string) => x,
       options.casing === "lower"
-        ? x => x.toLowercase()
+        ? (x: string) => x.toLowerCase()
         : options.casing === "upper"
-        ? x => x.toUppercase()
-        : x => x
+        ? (x: string) => x.toUpperCase()
+        : (x: string) => x,
     ].reduce((acc, fn) => fn(acc), string);
 
-  Trie.prototype.minDepthMet = string => string.length >= options.getDepth;
+  Trie.prototype.minDepthMet = (string: string) =>
+    string.length >= options.getDepth;
 
   return new Trie();
-};
+}
