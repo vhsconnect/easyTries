@@ -2,7 +2,7 @@
 
 A typed, zero-dependency Tries library.
 
-easyTries is a [Trie](https://en.wikipedia.org/wiki/Trie) tree data structure implementation for lookaheads, autocompletes on strings or types that coerce to strings. It is most commonly used for quickly filtering a large set of strings down based on some user input. easyTries is able to filter down a tree of 1,000,000 words down in 1 to 3 ms. for a quick benchmark of easyTries, run `npm run benchmark`.
+easyTries is a [Trie](https://en.wikipedia.org/wiki/Trie) tree data structure implementation for lookaheads, autocompletes on strings or types that coerce to strings. It is most commonly used for quickly filtering a large set of strings down based on some user input. easyTries is able to filter down a tree of 1,000,000 words down in 0 to 3 ms on our machines. for a quick comparison and benchmark of easyTries, run `npm run benchmark`.
 
 ## Structure
 
