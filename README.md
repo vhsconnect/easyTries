@@ -1,3 +1,5 @@
+[![vhsconnect](https://circleci.com/gh/vhsconnect/easyTries.svg?style=shield)](https://github.com/vhsconnect/easyTries)
+
 ## Description
 
 A typed, zero-dependency Tries library.
