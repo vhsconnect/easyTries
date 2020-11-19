@@ -32,7 +32,7 @@ example Trie Tree for the words 'CAT', 'CAN' & 'CATHY':
 ## Usage
 
 ```bash
-npm i easyTries
+npm i easytries
 ```
 
 Support for Both ES6 imports and CommonJS
