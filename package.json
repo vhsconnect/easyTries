@@ -1,6 +1,6 @@
 {
   "name": "easytries",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "a ~7kb, typed, zero-dependency trie library",
   "main": "./built/index.js",
   "scripts": {
