@@ -1,5 +1,5 @@
 {
-  "name": "easyTries",
+  "name": "easytries",
   "version": "1.0.0",
   "description": "library for creating a Trie to enable quick map filtering, lookups and autocomplete functionality",
   "main": "Tries.js",
