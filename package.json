@@ -4,7 +4,8 @@
   "description": "library for creating a Trie to enable quick map filtering, lookups and autocomplete functionality",
   "main": "Tries.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "benchmark": "node ./benchmark.js"
   },
   "author": "vhsconnect",
   "email": "contactme@github.com",
