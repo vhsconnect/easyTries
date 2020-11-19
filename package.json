@@ -1,15 +1,26 @@
 {
   "name": "easytries",
-  "version": "1.0.1",
-  "description": "library for creating a Trie to enable quick map filtering, lookups and autocomplete functionality",
+  "version": "1.0.4",
+  "description": "a ~7kb, typed, zero-dependency trie library",
   "main": "./built/index.js",
   "scripts": {
     "test": "mocha",
-    "benchmark": "node ./benchmark.js"
+    "benchmark": "node ./benchmark.js",
+    "minify": "sh build.sh | xargs -l bash -c 'npm publish $0 --dry-run'",
+    "clean": "rm -rf dist && rm easytries-*"
   },
   "author": "vhsconnect",
   "email": "90valentin@gmail.com",
   "license": "ISC",
+  "keywords": [
+    "trie",
+    "tries",
+    "trie data structure",
+    "trie tree",
+    "autocomplete",
+    "lookahead",
+    "wordmap"
+  ],
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^14.14.7",

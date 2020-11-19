@@ -2,7 +2,7 @@
 
 ## Description
 
-A typed, zero-dependency Tries library.
+A ~7 kb, typed, zero-dependency Tries library.
 
 easyTries is a [Trie](https://en.wikipedia.org/wiki/Trie) tree data structure implementation for lookaheads, autocompletes on strings or types that coerce to strings. It is most commonly used for quickly filtering a large set of strings down based on some user input. easyTries is able to filter down a tree of 1,000,000 words down in 0 to 3 ms on our machines. for a quick comparison and benchmark of easyTries, run `npm run benchmark`.
 
@@ -38,11 +38,11 @@ npm i easyTries
 Support for Both ES6 imports and CommonJS
 
 ```js
-import easyTries from "easyTries";
+import { easyTries } from "easytries";
 ```
 
 ```js
-const easyTries = require("easyTries").easyTries;
+const { easyTries } = require("easytries");
 ```
 
 ```js
