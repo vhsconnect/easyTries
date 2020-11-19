@@ -1,8 +1,31 @@
 ## Description
 
-A typed, zero-dependancy Tries library.
+A typed, zero-dependency Tries library.
 
-easyTries.js is a [Trie](https://en.wikipedia.org/wiki/Trie) tree data structure implementation for lookaheads, autocompletes on strings or types that coerce to strings. It is most commonly used for quickly filtering a large set of strings down based on some user input. easyTries is able to filter down a tree of 1,000,000 words down in 1 to 3 ms. for a quick benchmark of easyTries, run `npm run benchmark`.
+easyTries is a [Trie](https://en.wikipedia.org/wiki/Trie) tree data structure implementation for lookaheads, autocompletes on strings or types that coerce to strings. It is most commonly used for quickly filtering a large set of strings down based on some user input. easyTries is able to filter down a tree of 1,000,000 words down in 1 to 3 ms. for a quick benchmark of easyTries, run `npm run benchmark`.
+
+## Structure
+
+example Trie Tree for the words 'CAT', 'CAN' & 'CATHY':
+
+```
+
+   |Trie 'C'
+   |_ children
+     |_ Trie 'A'
+       |_ children
+         |_ Trie 'T'
+         | |_ children
+         | | |_ Trie 'H'
+         | |   |_ children
+         | |     |_ Trie 'Y'
+         | |       |_ children
+         | |       |_ word
+         | |_ word
+         |_ Trie 'N'
+           |_ children
+           |_ word
+```
 
 ## Usage
 
@@ -13,11 +36,11 @@ npm i easyTries
 Support for Both ES6 imports and CommonJS
 
 ```js
-import Trie from "easyTries";
+import easyTries from "easyTries";
 ```
 
 ```js
-const Trie = require("easyTries").easyTries;
+const easyTries = require("easyTries").easyTries;
 ```
 
 ```js
@@ -78,9 +101,9 @@ trie.get("ST"); // expected ["stew", "stanley"]
 trie.get("st"); // expected ["stew", "stanley"]
 ```
 
-#### StartAt
+#### Get Depth
 
-Probably only useful for extremly large sets, over-the-network operations, or if you want to filter out strings smaller than a particular length
+Only return results after a certain string length is met. Probably only useful for extremely large sets, over-the-network operations, or if you want to filter out strings smaller than a particular length.
 
 ```js
 let trie = easyTries({ startAt: 3, casing: "lower" });

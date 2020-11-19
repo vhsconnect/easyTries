@@ -1,6 +1,6 @@
 {
-  "name": "easytries",
-  "version": "0.1.0",
+  "name": "easyTries",
+  "version": "1.0.0",
   "description": "library for creating a Trie to enable quick map filtering, lookups and autocomplete functionality",
   "main": "Tries.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "benchmark": "node ./benchmark.js"
   },
   "author": "vhsconnect",
-  "email": "contactme@github.com",
+  "email": "90valentin@gmail.com",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
