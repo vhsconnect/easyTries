@@ -15,9 +15,9 @@ function benchmark(algo, list, testString, header) {
   let startTimeGet = new Date();
   let returned = algo.get(testString);
   let getTime = new Date() - startTimeGet;
-  console.log(`loaded ${list.length} in ${loadTime}`);
+  console.log(`loaded ${list.length} strings in ${loadTime} ms`);
   console.log(
-    `returned a list of ${returned.length} values with input string = ${testString} in ${getTime} ms`
+    `returned a list of ${returned.length} values with input string=${testString} in ${getTime} ms`
   );
   console.log("--------");
 }
@@ -30,7 +30,7 @@ benchmark(new Naive(), fiveHundredThousand, "834");
 benchmark(new Naive(), oneMillion, "155");
 
 console.log("***********");
-console.log("Tries");
+console.log("EasyTries");
 console.log("***********");
 benchmark(easyTries(), Object.keys(oneHundredThousandWordDictionary), "sta");
 benchmark(easyTries(), fiveHundredThousand, "834");
