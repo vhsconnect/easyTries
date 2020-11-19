@@ -15,22 +15,25 @@ function benchmark(algo, list, testString, header) {
   let startTimeGet = new Date();
   let returned = algo.get(testString);
   let getTime = new Date() - startTimeGet;
-  console.log(`loaded ${list.length} strings in ${loadTime} ms`);
   console.log(
-    `returned a list of ${returned.length} values with input string=${testString} in ${getTime} ms`
+    // "\x1b[33m%s\x1b[0m",
+    `loaded \x1b[33m${list.length}\x1b[0m strings in \x1b[33m${loadTime}\x1b[0m ms`
+  );
+  console.log(
+    `returned a list of \x1b[33m${returned.length}\x1b[0m values with input string=${testString} in \x1b[33m${getTime}\x1b[0m ms`
   );
   console.log("--------");
 }
 
 console.log("***********");
-console.log("Naive Implentation");
+console.log("\x1b[36mNaive Implentation\x1b[0m");
 console.log("***********");
 benchmark(new Naive(), Object.keys(oneHundredThousandWordDictionary), "sta");
 benchmark(new Naive(), fiveHundredThousand, "834");
 benchmark(new Naive(), oneMillion, "155");
 
 console.log("***********");
-console.log("EasyTries");
+console.log("\x1b[32measyTries\x1b[0m");
 console.log("***********");
 benchmark(easyTries(), Object.keys(oneHundredThousandWordDictionary), "sta");
 benchmark(easyTries(), fiveHundredThousand, "834");
